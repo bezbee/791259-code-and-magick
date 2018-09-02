@@ -14,7 +14,7 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-var getMaxElement = function(arr) {
+var getMaxElement = function (arr) {
   var maxElement = arr[0];
 
   for (var i = 1; i < arr.length; i++) {
@@ -25,7 +25,7 @@ var getMaxElement = function(arr) {
   return maxElement;
 };
 
-window.renderStatistics = function(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, 110, 20, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, 100, 10, '#fff');
 
@@ -40,22 +40,23 @@ window.renderStatistics = function(ctx, names, times) {
     ctx.fillText(names[i], CLOUD_X + i * (BAR_WIDTH + SPACE), CLOUD_Y + GAP * 3 + BAR_HEIGHT);
   }
 
-  for (var i = 0; i < names.length; i++) {
-    if (names[i] =='Вы') {
+  for (var j = 0; j < names.length; j++) {
+    if (names[j] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      ctx.fillRect(CLOUD_X + i * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH, BAR_HEIGHT);} else {
+      ctx.fillRect(CLOUD_X + j * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH, BAR_HEIGHT);
+    } else {
       ctx.fillStyle = 'blue';
-      ctx.fillRect(CLOUD_X + i * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH, BAR_HEIGHT);
+      ctx.fillRect(CLOUD_X + j * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH, BAR_HEIGHT);
     }
   }
 
-  for (var i = 0; i < names.length; i++) {
+  for (var z = 0; z < names.length; z++) {
     ctx.fillStyle = 'white';
-    ctx.fillRect(CLOUD_X + i * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH,     BAR_HEIGHT - BAR_HEIGHT * times[i] / maxTime);
+    ctx.fillRect(CLOUD_X + z * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH, BAR_HEIGHT - BAR_HEIGHT * times[z] / maxTime);
   }
 
-  for (var i = 0; i < names.length; i++) {
+  for (var v = 0; v < names.length; v++) {
     ctx.fillStyle = 'black';
-    ctx.fillText(Math.round(times[i]), CLOUD_X + i * (BAR_WIDTH + SPACE), CLOUD_Y + (BAR_HEIGHT - BAR_HEIGHT * times[i] / maxTime));
+    ctx.fillText(Math.round(times[v]), CLOUD_X + v * (BAR_WIDTH + SPACE), CLOUD_Y + (BAR_HEIGHT - BAR_HEIGHT * times[v] / maxTime));
   }
 };
