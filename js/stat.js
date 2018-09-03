@@ -37,8 +37,8 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   var fillRectangle = function (color) {
-     ctx.fillStyle = color;
-     ctx.fillRect(CLOUD_X + i * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH, BAR_HEIGHT);
+    ctx.fillStyle = color;
+    ctx.fillRect(CLOUD_X + i * (BAR_WIDTH + SPACE), CLOUD_Y + GAP, BAR_WIDTH, BAR_HEIGHT);
   };
 
   for (var i = 0; i < names.length; i++) {
