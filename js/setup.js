@@ -37,11 +37,11 @@ var createWizards = function () {
 };
 createWizards();
 
-var renderWizard = function (wizards) {
+var renderWizard = function (character) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizards.name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizards.coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizards.eyesColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = character.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = character.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = character.eyesColor;
   return wizardElement;
 };
 
