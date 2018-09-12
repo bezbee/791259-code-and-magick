@@ -1,14 +1,12 @@
 'use strict';
 
-var wizardFirstNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var WIZARDS_FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 
-var wizardLastNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var WIZARDS_LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 
-var wizardCoatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var WIZARDS_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 
-var wizardEyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
-
-var wizards = [];
+var WIZARDS_EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -25,17 +23,20 @@ var getRandomItem = function (items) {
 
 var NUMBER_OF_WIZARDS_TO_COPY = 4;
 
-var createWizards = function () {
-  for (var j = 0; j < NUMBER_OF_WIZARDS_TO_COPY; j++) {
-    wizards[j] = {
-      name: getRandomItem(wizardFirstNames) + ' ' + getRandomItem(wizardLastNames),
-      coatColor: getRandomItem(wizardCoatColors),
-      eyesColor: getRandomItem(wizardEyesColors)
-    };
-  }
-  return wizards;
+var createWizard = function () {
+  var someWizard = {
+    name: getRandomItem(WIZARDS_FIRST_NAMES) + ' ' + getRandomItem(WIZARDS_LAST_NAMES),
+    coatColor: getRandomItem(WIZARDS_COAT_COLORS),
+    eyesColor: getRandomItem(WIZARDS_EYE_COLORS)
+  };
+  return someWizard;
 };
-createWizards();
+
+var wizards = [];
+for (var j = 0; j < NUMBER_OF_WIZARDS_TO_COPY; j++) {
+  var oneWizard = createWizard();
+  wizards.push(oneWizard);
+}
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
