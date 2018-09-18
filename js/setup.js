@@ -9,7 +9,6 @@ var WIZARDS_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 
 var WIZARDS_EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
 
 var similarListElement = document.querySelector('.setup-similar-list');
 
@@ -54,3 +53,76 @@ for (var i = 0; i < wizards.length; i++) {
 similarListElement.appendChild(fragment);
 
 document.querySelector('.setup-similar').classList.remove('hidden');
+
+// Module4
+// Нужна помощь с "Если фокус находится на форме ввода имени, то окно закрываться не должно."
+
+var dialogSubmitButton = document.querySelector('setup-submit');
+var dialogClose = function () {
+  userDialog.classList.add('hidden');
+};
+
+var dialogOpen = function () {
+  userDialog.classList.remove('hidden');
+};
+
+var onButtonSubmit = function () {
+  dialogSubmitButton.setAttribute('type', 'submit');
+};
+
+var icon = document.querySelector('.setup-open');
+icon.addEventListener('click', function () {
+  dialogOpen();
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 27) {
+      dialogClose();
+    }
+  });
+  dialogCloseButton.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 13) {
+      dialogClose();
+    }
+  });
+  dialogSubmitButton.addEventListener('click', onButtonSubmit);
+  dialogSubmitButton.addEventListener('keydown', onButtonSubmit);
+
+});
+
+var dialogCloseButton = document.querySelector('.setup-close');
+dialogCloseButton.addEventListener('click', dialogClose);
+
+document.querySelector('.setup-open-icon').addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    dialogOpen();
+  }
+});
+
+var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
+var inputCoatColor = document.querySelector('input[name="coat-color"]');
+wizardCoat.addEventListener('click', function () {
+  var randomCoatColor = getRandomItem(WIZARD_COAT_COLOR);
+  wizardCoat.style.fill = randomCoatColor;
+  inputCoatColor.value = randomCoatColor;
+});
+
+var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
+var inputEyesColor = document.querySelector('input[name="eyes-color"]');
+wizardEyes.addEventListener('click', function () {
+  wizardEyes.setAttribute('style', 'fill');
+  var randomEyesColor = getRandomItem(WIZARD_EYES_COLOR);
+  wizardEyes.style.fill = randomEyesColor;
+  inputEyesColor.value = randomEyesColor;
+});
+
+var WIZARD_FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+var wizardFireball = document.querySelector('.setup-fireball-wrap');
+var inputFireballColor = document.querySelector('input[name="fireball-color"]');
+wizardFireball.addEventListener('click', function () {
+  wizardFireball.setAttribute('style', 'background-color');
+  var randomFireballColor = getRandomItem(WIZARD_FIREBALL_COLOR);
+  wizardFireball.style.backgroundColor = randomFireballColor;
+  inputFireballColor.value = randomFireballColor;
+});
