@@ -4,7 +4,7 @@ var WIZARDS_FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мари�
 
 var WIZARDS_LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 
-var WIZARDS_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var WIZARDS_COAT_COLORS = ['rgb(101, ENTER_CODE7, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 
 var WIZARDS_EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
@@ -16,11 +16,18 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
+
+var NUMBER_OF_WIZARDS_TO_COPY = 4;
+var wizards = [];
+var fragment = document.createDocumentFragment();
+var ESC_CODE = 27;
+var ENTER_CODE = 13;
+var icon = document.querySelector('.setup-open');
+var dialogCloseButton = document.querySelector('.setup-close');
+
 var getRandomItem = function (items) {
   return items[Math.floor(Math.random() * items.length)];
 };
-
-var NUMBER_OF_WIZARDS_TO_COPY = 4;
 
 var createWizard = function () {
   var someWizard = {
@@ -31,7 +38,7 @@ var createWizard = function () {
   return someWizard;
 };
 
-var wizards = [];
+
 for (var j = 0; j < NUMBER_OF_WIZARDS_TO_COPY; j++) {
   var oneWizard = createWizard();
   wizards.push(oneWizard);
@@ -45,8 +52,6 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var fragment = document.createDocumentFragment();
-
 for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
 }
@@ -55,46 +60,39 @@ similarListElement.appendChild(fragment);
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 // Module4
-// Нужна помощь с "Если фокус находится на форме ввода имени, то окно закрываться не должно."
 
-var dialogSubmitButton = document.querySelector('setup-submit');
-var dialogClose = function () {
+var closeDialog = function () {
   userDialog.classList.add('hidden');
 };
 
-var dialogOpen = function () {
+var openDialog = function () {
   userDialog.classList.remove('hidden');
 };
-
-var onButtonSubmit = function () {
-  dialogSubmitButton.setAttribute('type', 'submit');
+var setupUser = document.querySelector('.setup-user-name');
+var onEscClose = function (evt) {
+  if (evt.keyCode === ESC_CODE && document.activeElement !== setupUser) {
+    closeDialog();
+  }
 };
 
-var icon = document.querySelector('.setup-open');
 icon.addEventListener('click', function () {
-  dialogOpen();
+  openDialog();
 
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 27) {
-      dialogClose();
-    }
-  });
+  document.addEventListener('keydown', onEscClose);
   dialogCloseButton.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 13) {
-      dialogClose();
+    if (evt.keyCode === ENTER_CODE) {
+      closeDialog();
     }
   });
-  dialogSubmitButton.addEventListener('click', onButtonSubmit);
-  dialogSubmitButton.addEventListener('keydown', onButtonSubmit);
-
 });
 
-var dialogCloseButton = document.querySelector('.setup-close');
-dialogCloseButton.addEventListener('click', dialogClose);
+
+dialogCloseButton.addEventListener('click', closeDialog,
+    document.removeEventListener('keydown', onEscClose));
 
 document.querySelector('.setup-open-icon').addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
-    dialogOpen();
+  if (evt.keyCode === ENTER_CODE) {
+    openDialog();
   }
 });
 
