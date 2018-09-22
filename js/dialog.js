@@ -1,7 +1,8 @@
 'use strict';
+
 (function () {
 
-  var dialogHandle = document.querySelector('.setup-user-pic');
+  var dialogHandle = document.querySelector('.setup-user');
 
   dialogHandle.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
