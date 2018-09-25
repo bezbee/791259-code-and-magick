@@ -8,8 +8,6 @@ var WIZARDS_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 
 
 var WIZARDS_EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var userDialog = document.querySelector('.setup');
-
 var similarListElement = document.querySelector('.setup-similar-list');
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
@@ -20,10 +18,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
 var NUMBER_OF_WIZARDS_TO_COPY = 4;
 var wizards = [];
 var fragment = document.createDocumentFragment();
-var ESC_CODE = 27;
-var ENTER_CODE = 13;
-var icon = document.querySelector('.setup-open');
-var dialogCloseButton = document.querySelector('.setup-close');
+
 
 var getRandomItem = function (items) {
   return items[Math.floor(Math.random() * items.length)];
@@ -58,43 +53,6 @@ for (var i = 0; i < wizards.length; i++) {
 similarListElement.appendChild(fragment);
 
 document.querySelector('.setup-similar').classList.remove('hidden');
-
-// Module4
-
-var closeDialog = function () {
-  userDialog.classList.add('hidden');
-};
-
-var openDialog = function () {
-  userDialog.classList.remove('hidden');
-};
-var setupUser = document.querySelector('.setup-user-name');
-var onEscClose = function (evt) {
-  if (evt.keyCode === ESC_CODE && document.activeElement !== setupUser) {
-    closeDialog();
-  }
-};
-
-icon.addEventListener('click', function () {
-  openDialog();
-
-  document.addEventListener('keydown', onEscClose);
-  dialogCloseButton.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_CODE) {
-      closeDialog();
-    }
-  });
-});
-
-
-dialogCloseButton.addEventListener('click', closeDialog,
-    document.removeEventListener('keydown', onEscClose));
-
-document.querySelector('.setup-open-icon').addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_CODE) {
-    openDialog();
-  }
-});
 
 var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
