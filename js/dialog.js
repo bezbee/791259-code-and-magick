@@ -1,8 +1,16 @@
 'use strict';
 
 (function () {
+<<<<<<< HEAD
 
   var userDialog = document.querySelector('.setup');
+=======
+  var userDialog = document.querySelector('.setup');
+  var ESC_CODE = 27;
+  var ENTER_CODE = 13;
+  var icon = document.querySelector('.setup-open');
+  var dialogCloseButton = document.querySelector('.setup-close');
+>>>>>>> f45941f040ea414c91ee03fd0c3bbbf47b83d4bb
 
   var closeDialog = function () {
     userDialog.classList.add('hidden');

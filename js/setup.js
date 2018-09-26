@@ -15,7 +15,6 @@
       .content
       .querySelector('.setup-similar-item');
 
-
   var NUMBER_OF_WIZARDS_TO_COPY = 4;
   var wizards = [];
   var fragment = document.createDocumentFragment();
@@ -31,7 +30,6 @@
     getRandomItem: getRandomItem
   };
 
-
   var createWizard = function () {
     var someWizard = {
       name: getRandomItem(WIZARDS_FIRST_NAMES) + ' ' + getRandomItem(WIZARDS_LAST_NAMES),
@@ -40,7 +38,6 @@
     };
     return someWizard;
   };
-
 
   for (var j = 0; j < NUMBER_OF_WIZARDS_TO_COPY; j++) {
     var oneWizard = createWizard();
