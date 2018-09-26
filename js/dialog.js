@@ -1,11 +1,8 @@
 'use strict';
 
 (function () {
-  var ESC_CODE = 27;
-  var ENTER_CODE = 13;
+
   var userDialog = document.querySelector('.setup');
-  var icon = document.querySelector('.setup-open');
-  var dialogCloseButton = document.querySelector('.setup-close');
 
   var closeDialog = function () {
     userDialog.classList.add('hidden');
@@ -15,33 +12,6 @@
     userDialog.classList.remove('hidden');
     userDialog.style.cssText = 'top: 80px; left: 50%';
   };
-  var setupUser = document.querySelector('.setup-user-name');
-  var onEscClose = function (evt) {
-    if (evt.keyCode === ESC_CODE && document.activeElement !== setupUser) {
-      closeDialog();
-    }
-  };
-
-  icon.addEventListener('click', function () {
-    openDialog();
-
-    document.addEventListener('keydown', onEscClose);
-    dialogCloseButton.addEventListener('keydown', function (evt) {
-      if (evt.keyCode === ENTER_CODE) {
-        closeDialog();
-      }
-    });
-  });
-
-
-  dialogCloseButton.addEventListener('click', closeDialog,
-      document.removeEventListener('keydown', onEscClose));
-
-  document.querySelector('.setup-open-icon').addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_CODE) {
-      openDialog();
-    }
-  });
 
   var dialogHandle = document.querySelector('.setup-user');
 
@@ -80,5 +50,10 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  window.dialog = {
+    open: openDialog,
+    close: closeDialog
+  };
 
 })();

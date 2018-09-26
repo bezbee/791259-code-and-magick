@@ -19,6 +19,10 @@
   var NUMBER_OF_WIZARDS_TO_COPY = 4;
   var wizards = [];
   var fragment = document.createDocumentFragment();
+  var icon = document.querySelector('.setup-open');
+  var dialogCloseButton = document.querySelector('.setup-close');
+  var ESC_CODE = 27;
+  var ENTER_CODE = 13;
 
   var getRandomItem = function (items) {
     return items[Math.floor(Math.random() * items.length)];
@@ -57,5 +61,35 @@
   similarListElement.appendChild(fragment);
 
   document.querySelector('.setup-similar').classList.remove('hidden');
+
+  var setupUser = document.querySelector('.setup-user-name');
+  var onEscClose = function (evt) {
+    if (evt.keyCode === ESC_CODE && document.activeElement !== setupUser) {
+      window.dialog.close();
+    }
+  };
+
+  icon.addEventListener('click', function () {
+    window.dialog.open();
+
+    document.addEventListener('keydown', onEscClose);
+    dialogCloseButton.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === ENTER_CODE) {
+        window.dialog.close();
+      }
+    });
+  });
+
+
+  dialogCloseButton.addEventListener('click', function () {
+    window.dialog.close();
+    document.removeEventListener('keydown', onEscClose);
+  });
+
+  document.querySelector('.setup-open-icon').addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_CODE) {
+      window.dialog.open();
+    }
+  });
 
 })();
