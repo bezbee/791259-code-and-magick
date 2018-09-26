@@ -1,9 +1,9 @@
 'use strict';
 
 (function () {
+  var userDialog = document.querySelector('.setup');
   var ESC_CODE = 27;
   var ENTER_CODE = 13;
-  var userDialog = document.querySelector('.setup');
   var icon = document.querySelector('.setup-open');
   var dialogCloseButton = document.querySelector('.setup-close');
 
